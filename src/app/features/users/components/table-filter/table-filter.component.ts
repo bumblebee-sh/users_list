@@ -10,7 +10,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { SearchFilterDto } from '@app/features/users/dto/search-filter.dto';
-import {FormGroup, FormControl, ReactiveFormsModule} from '@angular/forms';
+import {FormGroup, ReactiveFormsModule, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-table-filter',
@@ -21,10 +21,15 @@ import {FormGroup, FormControl, ReactiveFormsModule} from '@angular/forms';
 export class TableFilterComponent implements OnInit, OnDestroy {
   @Output() filterChange = new EventEmitter<SearchFilterDto>();
 
-  // TODO: use form builder
-  public form = new FormGroup({
-    search: new FormControl(''),
-  });
+  public form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      search: [''],
+    });
+  }
+
+
 
   private readonly debounceTime = 300;
   private destroy$ = new Subject<void>();
