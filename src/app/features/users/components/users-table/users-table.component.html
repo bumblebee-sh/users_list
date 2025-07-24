@@ -6,7 +6,9 @@
     <nz-table
       #userTable
       [nzData]="displayedUsers"
-      [nzFrontPagination]="false"
+      nzShowPagination
+      nzShowSizeChanger
+      [nzFrontPagination]="true"
     >
       <thead>
         <tr>
