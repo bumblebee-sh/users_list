@@ -36,6 +36,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/users_list/",
               "budgets": [
                 {
                   "type": "initial",
