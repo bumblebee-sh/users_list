@@ -1,0 +1,5 @@
+<app-loader [loading]="loading" [loadingText]="'Loading users...'"></app-loader>
+
+@if(users && !loading) {
+  <app-users-table [users]="users"></app-users-table>
+}

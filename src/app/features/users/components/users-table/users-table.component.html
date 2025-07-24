@@ -1,0 +1,38 @@
+<div class="user_table">
+  <div class="user_table__filter">
+    <app-table-filter (filterChange)="onFilterChange($event)" />
+  </div>
+  <div class="user_table__table">
+    <nz-table
+      #userTable
+      [nzData]="displayedUsers"
+      [nzFrontPagination]="false"
+    >
+      <thead>
+        <tr>
+          @for (column of headerColumn; track column) {
+            @if (column.sortFn) {
+              <th [nzSortFn]="column.sortFn">{{ column.title }}</th>
+            } @else {
+              <th>{{ column.title }}</th>
+            }
+          }
+        </tr>
+      </thead>
+      <tbody class="user_table__body">
+        @for (user of userTable.data; track user) {
+          <tr>
+            @for (column of headerColumn; track column) {
+              <!-- some cases -->
+              @if (column.key === 'dob') {
+                <td>{{ user.dob | date: 'dd/MM/yyyy' }}</td>
+              } @else {
+                <td>{{ user[column.key] }}</td>
+              }
+            }
+          </tr>
+        }
+      </tbody>
+    </nz-table>
+  </div>
+</div>
